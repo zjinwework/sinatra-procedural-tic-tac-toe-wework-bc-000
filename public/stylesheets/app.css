@@ -1,0 +1,43 @@
+body{
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+section.body{
+  width: 500px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+h1 {
+  font-size: 24px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 500;
+  line-height: 26.3999996185303px;
+  text-align: center;
+}
+
+input[type="text"]{
+  width: 25px;
+  text-align: center; 
+  border: 1px solid #E1E0E0;
+}
+input[readonly]{
+  background: #EEE;
+}
+
+form{
+  width: 140px;
+  margin: 0 auto;
+}
+
+form table{
+  width: 100%;
+  margin: 0 auto;
+}
+
+form p{
+  width: 90%;
+  text-align: center;
+  font-size: 12px;
+}

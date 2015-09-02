@@ -1,0 +1,23 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Tic Tac Toe Sinatra - Learn.Co Project</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/stylesheets/app.css">
+        <script>
+          var currentToken = "<%= @game.current_player %>"
+        </script>
+    </head>
+    <body>
+
+      <section class="body">
+        <%= yield %>
+      </section>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+      <script src="/javascripts/app.js"></script>
+    </body>
+</html>
