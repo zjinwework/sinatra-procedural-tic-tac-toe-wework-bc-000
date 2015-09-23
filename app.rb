@@ -6,7 +6,7 @@ class TicTacToeApp < Sinatra::Base
     erb :"index.html"
   end
 
-  post '/' do    
+  post '/' do 
     @game = Game.new(params)
     if @game.won?
       erb :"winner.html"

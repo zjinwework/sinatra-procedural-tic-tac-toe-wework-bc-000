@@ -4,7 +4,7 @@
   <table>
     <tr>
       <td>
-        <input type="text" name="0" value="<%= @game.position(0) %>" <%= "readonly" if @game.position_taken?(0) %>>
+        <input id="0" type="text" name="0" value="<%= @game.position(0) %>" <%= "readonly" if @game.position_taken?(0) %>>
       </td>
       <td>
         <input type="text" name="1" value="<%= @game.position(1) %>" <%= "readonly" if @game.position_taken?(1) %>>
