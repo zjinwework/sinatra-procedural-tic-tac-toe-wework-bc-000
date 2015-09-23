@@ -42,21 +42,59 @@ end
 describe "game play" do 
   describe "Player X wins the game" do 
     it "plays the game and shows the winner page, congratulating X" do 
-      player_x_plays_to_win
+      visit '/'
+      fill_in('0', :with => 'X') 
+      click_button 'Submit Move'
+      fill_in('1', :with => 'O') 
+      click_button 'Submit Move'
+      fill_in('4', :with => 'X') 
+      click_button 'Submit Move'
+      fill_in('5', :with => 'O') 
+      click_button 'Submit Move'
+      fill_in('8', :with => 'X') 
+      click_button 'Submit Move'
       expect(page.body).to include("Congratulations X, you have won the game!")
     end
   end
 
   describe "Player O wings the game" do
     it "plays the game and shows the winner page, congratulating O" do
-      player_o_plays_to_win
+      visit '/'
+      fill_in('0', :with => 'O') 
+      click_button 'Submit Move'
+      fill_in('1', :with => 'X') 
+      click_button 'Submit Move'
+      fill_in('4', :with => 'O') 
+      click_button 'Submit Move'
+      fill_in('5', :with => 'X') 
+      click_button 'Submit Move'
+      fill_in('8', :with => 'O') 
+      click_button 'Submit Move'
       expect(page.body).to include("Congratulations O, you have won the game!")       
     end 
   end
 
   describe "There is a tie" do 
     it "plays the game and shows the draw page if there is a tie" do 
-      tied_game
+      visit '/'
+      fill_in('0', :with => 'X') 
+      click_button 'Submit Move'
+      fill_in('1', :with => 'O') 
+      click_button 'Submit Move'
+      fill_in('2', :with => 'X') 
+      click_button 'Submit Move'
+      fill_in('3', :with => 'O') 
+      click_button 'Submit Move'
+      fill_in('4', :with => 'O') 
+      click_button 'Submit Move'
+      fill_in('5', :with => 'X')
+      click_button 'Submit Move' 
+      fill_in('6', :with => 'X')
+      click_button 'Submit Move'
+      fill_in('7', :with => 'X')
+      click_button 'Submit Move'
+      fill_in('8', :with => 'O')
+      click_button 'Submit Move'
       expect(page.body).to include("Cats Game!")
     end
   end
