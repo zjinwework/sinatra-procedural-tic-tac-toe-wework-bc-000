@@ -1,11 +1,16 @@
 body{
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Inconsolata', monospace;
+  background: #fdf6e3;
 }
 
 section.body{
   width: 500px;
   margin: 0 auto;
   padding: 0;
+}
+
+td{
+  border: 1px solid black;
 }
 
 h1 {
@@ -19,11 +24,17 @@ h1 {
 
 input[type="text"]{
   width: 25px;
-  text-align: center; 
+  text-align: center;
   border: 1px solid #E1E0E0;
+  border: 0;
+  background: transparent;
 }
 input[readonly]{
   background: #EEE;
+}
+
+input[type="text"]:hover{
+  cursor: pointer;
 }
 
 form{
@@ -40,4 +51,61 @@ form p{
   width: 90%;
   text-align: center;
   font-size: 12px;
+}
+
+.blinking-cursor:hover {
+  font-weight: 100;
+  font-size: 30px;
+  color: #2E3D48;
+  /*border: 1px solid black;*/
+  -webkit-animation: 1s blink step-end infinite;
+  -moz-animation: 1s blink step-end infinite;
+  -ms-animation: 1s blink step-end infinite;
+  -o-animation: 1s blink step-end infinite;
+  animation: 1s blink step-end infinite;
+}
+
+@keyframes "blink" {
+  from, to {
+    border: transparent;
+  }
+  50% {
+    border: 1px solid black;
+  }
+}
+
+@-moz-keyframes blink {
+  from, to {
+    border: transparent;
+  }
+  50% {
+    border: 1px solid black;
+  }
+}
+
+@-webkit-keyframes "blink" {
+  from, to {
+    border: transparent;
+  }
+  50% {
+    border: 1px solid black;
+  }
+}
+
+@-ms-keyframes "blink" {
+  from, to {
+    border: transparent;
+  }
+  50% {
+    border: 1px solid black;
+  }
+}
+
+@-o-keyframes "blink" {
+  from, to {
+    border: transparent;
+  }
+  50% {
+    border: 1px solid black;
+  }
 }

@@ -4,7 +4,7 @@
   <table>
     <tr>
       <td>
-        <input id="0" type="text" name="0" value="<%= @game.position(0) %>" <%= "readonly" if @game.position_taken?(0) %>>
+        <input id="0" type="text" name="0" class="blinking-cursor" value="<%= @game.position(0) %>" <%= "readonly" if @game.position_taken?(0) %>>
       </td>
       <td>
         <input type="text" name="1" value="<%= @game.position(1) %>" <%= "readonly" if @game.position_taken?(1) %>>
@@ -22,7 +22,7 @@
       </td>
       <td>
         <input type="text" name="5" value="<%= @game.position(5) %>" <%= "readonly" if @game.position_taken?(5) %>>
-      </td>        
+      </td>
     </tr>
     <tr>
       <td>
@@ -33,7 +33,7 @@
       </td>
       <td>
         <input type="text" name="8" value="<%= @game.position(8) %>" <%= "readonly" if @game.position_taken?(8) %>>
-      </td>        
+      </td>
     </tr>
   </table>
 
