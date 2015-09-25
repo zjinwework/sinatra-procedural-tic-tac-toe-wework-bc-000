@@ -1,0 +1,104 @@
+body{
+  font-family: 'Inconsolata', monospace;
+  background: #fdf6e3;
+}
+
+section.body{
+  margin: 0 auto;
+  padding: 4px 0 0px 4px;
+}
+
+h1 {
+  font-size: 24px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 500;
+  line-height: 26.3999996185303px;
+  text-align: left;
+  margin: 0;
+}
+
+h1 span.path{
+  color: rgb(17, 242, 26);
+  display: block;
+}
+
+h1 span.prompt{
+  color: blue;
+}
+
+h1 span.heart{
+  color: red;
+}
+
+input[type="text"]{
+  font-family: monospace;
+  width: 98%;
+  text-align: center;
+  /*border: 1px solid #E1E0E0;*/
+  border: 0;
+  background: transparent;
+  font-size: 80px;
+}
+
+input[readonly]{
+  background: #fdf6e3;
+}
+
+
+input[type="text"]:hover{
+  cursor: pointer;
+}
+
+input[readonly]:hover{
+  cursor: default;
+}
+
+form{
+  width: 140px;
+}
+
+form table{
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+}
+
+td{
+  margin: 0;
+  padding: 0;
+}
+
+td:nth-child(1){
+  border-right: 3px solid #657B83;
+  border-bottom: 3px dashed #657B83;
+}
+
+td:nth-child(2){
+  border-bottom: 3px dashed #657B83;
+}
+
+td:nth-child(3){
+  border-left: 3px solid #657B83;
+  border-bottom: 3px dashed #657B83;
+}
+
+tr:nth-child(3) td{
+  border-bottom: 0
+}
+
+form p{
+  width: 90%;
+  text-align: center;
+  font-size: 12px;
+}
+
+input[type=text], input:focus[type=text] {
+  border:none;
+  outline-width: 0;
+}
+
+button[type=submit]{
+  width: 400px;
+  font-size: 44px;
+}

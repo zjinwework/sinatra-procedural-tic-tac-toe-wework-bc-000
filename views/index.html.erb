@@ -1,10 +1,10 @@
-<h1>Welcome to Learn.co TicTacToe</h1>
+<h1><span class="path">~/tic-tac-toe</span> <span class="prompt">// <span class="heart">♥</span></span><span class="command"> ./bin/tictactoe</span></h1>
 
 <form action="/" method="POST">
   <table>
     <tr>
       <td>
-        <input id="0" type="text" name="0" class="blinking-cursor" value="<%= @game.position(0) %>" <%= "readonly" if @game.position_taken?(0) %>>
+        <input type="text" name="0" value="<%= @game.position(0) %>" <%= "readonly" if @game.position_taken?(0) %>>
       </td>
       <td>
         <input type="text" name="1" value="<%= @game.position(1) %>" <%= "readonly" if @game.position_taken?(1) %>>
@@ -38,6 +38,6 @@
   </table>
 
   <p>
-    <input type="submit" value="Submit Move" />
+    <button type="submit">Submit Move</button>
   </p>
 </form>
