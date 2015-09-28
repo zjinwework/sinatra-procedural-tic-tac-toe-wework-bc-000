@@ -17,9 +17,4 @@ $(function(){ // When the document is ready, we add the following behavior.
     // Don't allow the input to change it's value otherwise.
     e.preventDefault()
   })
-  // $("input:text").hover(function(){
-  //   $(this).focus()
-  // }, function(){
-  //   $(this).blur()
-  // })
 })
