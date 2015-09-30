@@ -205,41 +205,125 @@ Once our model is ready to handle the majority of the actual game logic, we need
 
 When a user goes to `/` for the first time, the application should initialize new game of Tic Tac Toe for the player and present them an HTML interface with which to interact with that game.
 
-#### Request Basics
+#### 1. Request Basics
 
-The first two tests require your `Application` controller to respond to a `GET` request at `/`. As long as a valid 200 response is sent back, regardless of the HTML returned, the first test will pass.
+Your `Application` controller must respond to a `GET` request at `/` with a valid 200 status code.
 
-The second test expects that within your controller action's response to `GET /`, you also instantiate an instance of `TicTacToe`. You should assign this instance to an instance variable in the controller `@game`. Your views are going to use this object.
+Within your controller action response to `GET /`, you also must instantiate an instance of `TicTacToe`. You should assign this instance to an instance variable in the controller `@game`. Your views are going to use this object.
 
-#### HTML for GET '/' - A Game Board
+#### 2. HTML for GET '/' - A Game Board
 
-The third test expects that when a user visits `/` to start a new game, they see "Welcome to Tic Tac Toe!".
+When a user visits `/` to start a new game, they should see a "Welcome to Tic Tac Toe!". Have your `GET /` controller action render an ERB template `index.erb`. You have to create that template and add the correct HTML in a file `views/index.erb`.
 
-The fourth test begins to specify the requirements of the `<form>` that will be responsible for packaging the game data, including the moves a user makes, and submitting the input to the `Application` controller via a `POST` request to the same `/` URL.
+`views/index.erb` will also have to setup the game board and form.
 
-2. Renders a welcome message
-3. renders a form wrapper
-4. renders a table with 9 inputs
-5. labels and names inputs correctly
-6. submit button
-7. submit form
+Build a `<form>` tag in `index.erb` responsible for packaging the game data, including the moves a user makes, and submitting the input to the `Application` controller via a `POST` request to the same `/` URL.
+You'll then need to add the HTML required for a Tic Tac Toe board. To setup a 3 x 3 grid of cells for the board we're going to use the HTML `<table>` element to build a table with 3 `<tr>` rows and within each row, 3 `<td>` cells. Nest this `<table>` within the `<form>` built above.
 
-### Processing the Form
-hits correct route
-calls turn on board
-renders view
+The next step is to fill each cell with a corresponding form input. Each `<input>` should be appropriately named after the the corresponding index of the board the input represents. For example, the top left input would be named `0`, `<input type="text" name="0">`. That'll make it easy to pass the values from the form to our `TicTacToe` instance because it is built to take in index-based turns.
 
-### Updating the Form
-8. input values updated
-9. input set to read only
+Finally, add a submit button to the form by using an `<input type="submit" value="Submit Move" id="submit"/>`. You can put this anywhere within the `<form>` tag.
 
+Once the form is configured correctly to submit to `POST /` and it has a submit button so you can actually submit it in your browser, the very next thing to do is simply build a `POST /` route that can accept the form submission request. It doesn't have to do anything else yet, let's just make sure it's not 404 and our application can at least handle the form submission.
 
+### POST / - Submitting a Move
 
-## Hints
+#### Updating the game based on form input
 
-### Console
+Let's think about are the requirements for processing the Tic Tac Toe form.
 
-## bonuses
+1. We have to initialize an instance of TicTacToe.
+2. The `params` hash will have all the data about the current game and what moves have been taken. We have to send that data to our TicTacToe instance using the `#turns` method to update the game to the current state.
 
-6. Javascript
-7. Theme
+Start by meeting those requirements. In your `post '/'` action in the `Application` controller, initialize an instance of TicTacToe in a `@game` instance variable.
+
+Then call `#turns` on that instance passing in the parameters. If your model is correct, after a player visits a new game at `GET /`, if they fill in the middle input named `4` with an "X" and submit the form, the `@game` instance in the `POST /` action should end up in a game state on the second turn with an "X" in the middle of the board.
+
+#### Updating the game form in index.erb
+
+After a move is submitted the `POST /` action should generally re-render the `index.erb` to display an updated game board to the user. If the `POST /` action correctly created a new instance of TicTacToe in `@game` and updated it based on the moves submitted in via the form, then the `index.erb` can use `@game` to dynamically update the state of the form. If the first played moved into the middle square with an "X" and hit submit, the next page should show a board with an "X" in the middle. That input should also be locked so the "O" player can't cheat and edit the previous moves. We can do that by setting a `readonly` attribute on the input.
+
+Update all the `<input>` tags in `index.erb` to use `@game` and ERB to dynamically inject HTML based on the properties in `@game`. For example, when we're writing an input, say the middle cell, it would normally look like:
+
+```html
+<input type="text" name="4" />
+```
+
+But what if the player already moved into the middle? That input's value should be set to an "X". How can we do that? Can we just use ERB within the `<input>` tag to prefill the `value` attribute? You bet. Given an `@game` in the controller action:
+
+```erb
+<input type="text" name="4" value="<%= @game.board[4] %>" />
+```
+
+You'll have to do something like that to conditionally set the `readonly` attribute of the input of that position in the board is taken.
+
+Once the inputs' values are updated and the readonly attribute is properly set for filled in positions, we can now play through a game of Tic Tac Toe. Try it out. The board will accurately update upon every move. Except it doesn't stop if someone has won or if there is a draw. Let's add that to our program.
+
+#### Winning the game
+
+Our `POST /` controller action in `Application` controller shouldn't render the `index.erb` and show the game board if the game was just won. Rather, we should render a new HTML template, let's call it `winner.erb`.
+
+Add a conditional in your `POST /` controller action to check if the game is won and render a template `winner.erb` instead of `index.erb`.
+
+The `winner.erb` template should use `@game` and ERB to dynamically insert the winner of the game in the congratulations message, for example, if X has won (what method on `@game` can we call to get the winner?), `winner.erb` should display: `Congratulations X, you won the game!`.
+
+Once you get those tests to pass, you can now play a more realistic game of Tic Tac Toe. The board will update correctly and when a player has won, the game will stop and you'll see a congratulations message.
+
+#### A draw game
+
+The final step is to account for a draw. It's very similar to accounting for a win. In your controller, conditionally render a `draw.erb` template if the `@game` is a draw. The `draw.erb` template can just say `Cats Game!`.
+
+That's it, once you've implemented that, the entire test suite should pass and you shoud be able to play an accurate game of Tic Tac Toe in your browser! Congratulations! Submit your solution with `learn submit`
+
+## Conclusion
+
+### Magic Javascript to Prevent Cheating
+
+If you play your game in a browser, you'll notice that there's something preventing you from cheating or putting invalid input in the board. If it is O's turn and you try to enter an X into a position, something is automatically correcting that token to an O. In fact if you enter anything besides the valid token, the board will update as though you entered the valid token. What's doing that?
+
+Open up `views/layout.erb` and look at lines 12-16 in the `<head>`.
+
+```html
+<script>
+  var currentToken = "<%= @game.current_player if @game && @game.respond_to?(:current_player) %>"
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="/javascripts/app.js"></script>
+```
+
+You'll notice that we added some Javascript to your layout. `var currentToken = "<%= @game.current_player if @game && @game.respond_to?(:current_player) %>"` is setting a javascript variable equal to the current_player token from the instance variable `@game` you create in your controller actions.
+
+Then we load jQuery and another javascript file located in `public/javascripts/app.js`. Open it up. In there is some javascript that provides the functionality of validating move input. It's annotated with explanation comments, give it a read.
+
+### A New Theme
+
+Our game works and that's great, but our design is a bit lacking. We included another stylesheet for Tic Tac Toe. If you want to see a Web Based CLI Design, do the following.
+
+In `views/layouts.erb`, comment out the `/stylesheets/app.css` stylesheet and comment in the `/stylesheets/terminal.css` stylesheet.
+
+```html
+<!-- <link rel="stylesheet" href="/stylesheets/app.css"> -->
+<link rel="stylesheet" href="/stylesheets/terminal.css">
+```
+
+Then go to your `views/index.erb` and update your `<h1>` Welcome message to:
+
+```html
+<h1><span class="path">~/tic-tac-toe</span> <span class="prompt">// <span class="heart">♥</span></span><span class="command"> ./bin/tictactoe</span></h1>
+```
+
+Save everything and reload your application in your browser. Look familar? Pretty cool, right?
+
+### Watching Your Tests Play the Game - OS X Only
+
+We use Capybara to write our integration tests. When we run our tests, Capybara is using a "headless" web browser to run our tests. What does that mean? Imagine a web browser like Chrome that you just can't see. It still performs all the actions of a web browser, but it has no Graphical User Interface (GUI). That's a headless browser. They are great for testing web applications. But we can tell Capybara to use our actual GUI browser and as the tests run, we'll be able to see our code control the browser.
+
+First, you'll need to install [Firefox](https://www.mozilla.org/en-US/firefox/new/).
+
+Then, open `specs/02_tic_tac_toe_integration_spec.rb` and on the first line, edit the opening `describe` block and pass a `:js => true` options hash as a second argument. It should look like:
+
+```ruby
+describe './app.rb - Tic Tac Toe Sinatra', :js => true do
+```
+
+Now run your tests with `learn` and watch Firefox come to life. It's okay if some of the tests are now failing. You can undo any changes you've made since to get them to pass.
