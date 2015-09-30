@@ -1,5 +1,8 @@
 tags:
-  - tag1
+  - sinatra
+  - tictactoe
+  - mvc
+  - application
 languages:
-  - language1
+  - ruby
 resources: 0
