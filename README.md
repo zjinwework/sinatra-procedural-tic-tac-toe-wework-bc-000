@@ -199,11 +199,41 @@ You'll see why this behavior is required shortly.
 
 ## Tic Tac Toe Integration Tests
 
-### The Form
+Once our model is ready to handle the majority of the actual game logic, we need to build controller actions and routes to handle the HTTP requests for our application and the views those controllers will use to generate the appropriate HTML response.
+
+### GET / - New Game
+
+When a user goes to `/` for the first time, the application should initialize new game of Tic Tac Toe for the player and present them an HTML interface with which to interact with that game.
+
+#### Request Basics
+
+The first two tests require your `Application` controller to respond to a `GET` request at `/`. As long as a valid 200 response is sent back, regardless of the HTML returned, the first test will pass.
+
+The second test expects that within your controller action's response to `GET /`, you also instantiate an instance of `TicTacToe`. You should assign this instance to an instance variable in the controller `@game`. Your views are going to use this object.
+
+#### HTML for GET '/' - A Game Board
+
+The third test expects that when a user visits `/` to start a new game, they see "Welcome to Tic Tac Toe!".
+
+The fourth test begins to specify the requirements of the `<form>` that will be responsible for packaging the game data, including the moves a user makes, and submitting the input to the `Application` controller via a `POST` request to the same `/` URL.
+
+2. Renders a welcome message
+3. renders a form wrapper
+4. renders a table with 9 inputs
+5. labels and names inputs correctly
+6. submit button
+7. submit form
 
 ### Processing the Form
+hits correct route
+calls turn on board
+renders view
 
 ### Updating the Form
+8. input values updated
+9. input set to read only
+
+
 
 ## Hints
 
