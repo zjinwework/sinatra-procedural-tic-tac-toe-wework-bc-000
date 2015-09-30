@@ -94,15 +94,122 @@ Our views contain the HTML and ERB templates for our application's HTML interfac
 
 ### Development Server
 
+You can startup a local development server for this application by first running `bundle` to install all the gem dependencies for this application and then running `shotgun`.
 
+```
+$ bundle
+Using rake 10.4.2
+etc...
+Using bundler 1.10.6
+Bundle complete! 10 Gemfile dependencies, 29 gems now installed.
+Use `bundle show [gemname]` to see where a bundled gem is installed.
 
-1. Project Structure
-2. Running the development server
-3. Running / reading the tests
-4. TicTacToe Model
-5. Game Form
-6. Post Controller
-4. The console
-5. Hints
+$ shotgun
+== Shotgun/Thin on http://127.0.0.1:9393/
+Thin web server (v1.6.3 codename Protein Powder)
+Maximum connections set to 1024
+Listening on 127.0.0.1:9393, CTRL+C to stop
+```
+
+If you immediately navigate to `http://localhost:9393` you'll see a 404 error from sinatra because your application is not currently programmed to respond to a GET request to '/'. You'll fix that in a bit, move on.
+
+## `models/tic_tac_toe.rb`
+
+The first set of tests you should get passing are located in `01_tic_tac_toe_spec.rb`. They are unit tests for our Tic Tac Toe model and are totally isolated from our Web Application or our Controller. Run `learn spec/01_tic_tac_toe_spec.rb --fail-fast` to focus on just those failing tests one at a time.
+
+Most of the methods required for our `TicTacToe` model will be familiar to you if you've built other version of Tic Tac Toe in Ruby.
+
+We'll go over the requirements for each of the methods we test for in this lab.
+
+### `#initialize`
+
+Initialize just has to setup the default game state by creating an instance variable `@board` set to an array with 9 empty `" "` strings.
+
+### `#board` and `#board=` attribute reader and writers.
+
+Provide a `#board=` and a `#board` method to read and write to the internal instance variable `@board`.
+
+### `#move`
+
+`#move` will accept an index in the board to update along with a token to place in that position.
+
+### `#position_taken?`
+
+This method will accept an index in the board to check if it is occupied. If the position contains anything besides an unoccupied space, the method should return true, otherwise, it should return false to indicate the position in the board is available.
+
+### `#turn_count`
+
+This method returns the number of turns that have been played based on the board in `@board`
+
+### `#current_player`
+
+The `#current_player` method should use the `#turn_count` method to determine if it is `"X"`'s turn or `"O"`'s.
+
+### `WIN_COMBINATIONS`
+
+Define a constant in `models/tic_tac_toe.rb` `WIN_COMBINATIONS` within the `TicTacToe` class and set it equal to a nested array filled with the index values for the various win combinations in tic tac toe.
+
+```ruby
+# within the body of TicTacToe
+
+WIN_COMBINATIONS = [
+  [0,1,2], # Top row
+  [3,4,5]  # Middle row
+  # ETC, an array for each win combination
+]
+
+# the rest of the TicTacToe class definition
+```
+
+### `#won?`
+
+Your `#won?` method should return false/nil if there is no win combination present in the board and return the winning combination indexes as an array if there is a win. Use your `WIN_COMBINATIONS` constant in this method.
+
+### `#draw?`
+
+Build a method `#draw?` that returns true if the board has not been won and is full and false if the board is not won and the board is not full, and false if the board is won.
+
+### `#winner`
+
+The `#winner` method should return the token, "X" or "O" that has won the game given a winning board.
+
+### `#turns`
+
+We'll be initializing a new instance of a `TicTacToe` game upon every form submission from the user. Whether it's the first turn or the last, we'll be starting up a new game and updating it with all the turns that have occurred, basically fast-forwarding a new instance of `TicTacToe` to any given turn or game state using this method.
+
+This method will accept a hash in the form of `{0 => "", 1 => "", 2 => "", 3 => "", 4 => "X", 5 => "", 6 => "", 7 => "", 8 => ""}`, which would represent a game after the first turn where X moved into the middle.
+
+Each key value pair in the hash represents a potential turn and the move that might have occurred. The key value pair `4 => "X"` means that `X` has at some point moved into the middle position. The key value pair of `0` => "" means that a move to the top left has not occurred.
+
+With this hash, the `#turn` method should iterate over the key value pairs of the hash and update the game by sending the `#move` method with the appropriate data from the hash's key value pairs.
+
+For example:
+```ruby
+game_state = {0 => "", 1 => "", 2 => "", 3 => "", 4 => "X", 5 => "", 6 => "", 7 => "", 8 => ""}
+
+game = TicTacToe.new
+game.turns(game_state)
+
+game.turn_count #=> 1, only one valid move has been made.
+game.current_player #=> "O", it is O's turn.
+game.board #=> [" ", " ", " ", " ", "X", " "," ", " ", " "] X in middle.
+```
+
+You'll see why this behavior is required shortly.
+
+## Tic Tac Toe Integration Tests
+
+### The Form
+
+### Processing the Form
+
+### Updating the Form
+
+## Hints
+
+### Console
+
+## bonuses
+
 6. Javascript
 7. Theme
