@@ -1,3 +1,3 @@
 require './config/environment'
 
-run TicTacToeApp
+run Application

@@ -1,12 +1,12 @@
 require_relative 'config/environment'
 
-class TicTacToeApp < Sinatra::Base
+class Application < Sinatra::Base
   get '/' do
     @game = Game.new
     erb :"index.html"
   end
 
-  post '/' do 
+  post '/' do
     @game = Game.new(params)
     if @game.won?
       erb :"winner.html"
