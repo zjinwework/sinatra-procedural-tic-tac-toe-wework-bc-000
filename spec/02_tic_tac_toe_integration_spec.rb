@@ -1,7 +1,7 @@
 require 'pry'
 require 'spec_helper'
 
-describe './app.rb - Tic Tac Toe Sinatra', :js => true do
+describe './app.rb - Tic Tac Toe Sinatra' do
   describe 'GET / - New Game' do
     context 'Request Basics' do
       it 'responds with a 200 status code' do
