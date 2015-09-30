@@ -142,7 +142,28 @@ describe './models/tic_tac_toe.rb' do
     end
 
     describe '#turns' do
+      it 'updates the game to the state of the hash after a first turn to middle' do
+        game = TicTacToe.new
+        game_status = {0 => " ", 1 => " ", 2 => " ", 3 => " ", 4 => "X", 5 => " ", 6 => " ", 7 => " ", 8 => " "}
 
+        game.turns(game_status)
+
+        expect(game.turn_count).to eq(1)
+        expect(game.current_player).to eq("O")
+        expect(game.board).to eq([" ", " ", " ", " ", "X", " ", " ", " ", " "])
+      end
+
+      it 'updates the game to a win after 5 turns' do
+        game = TicTacToe.new
+        game_status = {0 => "X", 1 => "X", 2 => "X", 3 => "O", 4 => "O", 5 => " ", 6 => " ", 7 => " ", 8 => " "}
+
+        game.turns(game_status)
+
+        expect(game.won?).to be_truthy
+        expect(game.winner).to eq("X")
+
+        expect(game.board).to eq(["X", "X", "X", "O", "O", " ", " ", " ", " "])
+      end
     end
   end
 end

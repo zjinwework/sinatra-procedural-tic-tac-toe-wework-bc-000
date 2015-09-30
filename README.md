@@ -177,7 +177,7 @@ The `#winner` method should return the token, "X" or "O" that has won the game g
 
 We'll be initializing a new instance of a `TicTacToe` game upon every form submission from the user. Whether it's the first turn or the last, we'll be starting up a new game and updating it with all the turns that have occurred, basically fast-forwarding a new instance of `TicTacToe` to any given turn or game state using this method.
 
-This method will accept a hash in the form of `{0 => "", 1 => "", 2 => "", 3 => "", 4 => "X", 5 => "", 6 => "", 7 => "", 8 => ""}`, which would represent a game after the first turn where X moved into the middle.
+This method will accept a hash in the form of `{0 => " ", 1 => " ", 2 => " ", 3 => " ", 4 => "X", 5 => " ", 6 => " ", 7 => " ", 8 => " "}`, which would represent a game after the first turn where X moved into the middle.
 
 Each key value pair in the hash represents a potential turn and the move that might have occurred. The key value pair `4 => "X"` means that `X` has at some point moved into the middle position. The key value pair of `0` => "" means that a move to the top left has not occurred.
 
@@ -185,7 +185,7 @@ With this hash, the `#turn` method should iterate over the key value pairs of th
 
 For example:
 ```ruby
-game_state = {0 => "", 1 => "", 2 => "", 3 => "", 4 => "X", 5 => "", 6 => "", 7 => "", 8 => ""}
+game_state = {0 => " ", 1 => " ", 2 => " ", 3 => " ", 4 => "X", 5 => " ", 6 => " ", 7 => " ", 8 => " "}
 
 game = TicTacToe.new
 game.turns(game_state)
