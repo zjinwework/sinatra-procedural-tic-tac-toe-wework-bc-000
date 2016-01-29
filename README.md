@@ -322,4 +322,5 @@ describe './app.rb - Tic Tac Toe Sinatra', :js => true do
 
 Now run your tests with `learn` and watch Firefox come to life. It's okay if some of the tests are now failing. You can undo any changes you've made since to get them to pass.
 
-View <a href='https://learn.co/lessons/sinatra-tic-tac-toe' data-visibility='hidden'>Sinatra Tic Tac Toe</a> on Learn.co and start learning to code for free.
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/sinatra-tic-tac-toe' data-visibility='hidden' title='Sinatra Tic Tac Toe'>Sinatra Tic Tac Toe</a> on Learn.co and start learning to code for free.</p>
+
