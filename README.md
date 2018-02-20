@@ -1,13 +1,13 @@
-# Sinatra Tic Tac Toe
+# Sinatra Procedural Tic Tac Toe
 
 ## Objectives
 
-1. Build an MVC Sinatra Application.
-2. Use a model without a database.
+1. Build a Sinatra Application.
+2. Use library of code.
 3. Respond to `get` requests with Sinatra.
 4. Render a HTML form with dynamic input values.
 5. Response to `post` requests with Sinatra.
-6. Pass form data through `params` to a model.
+6. Pass form data through `params` to a method.
 7. Conditionally render different templates.
 
 ## Overview
