@@ -12,7 +12,7 @@
         <% 3.times do |i| %>
         <tr>
           <% 3.times do |j| %>
-            <% index = i*3+ %>
+            <% index = i*3+j %>
             <td><input type="text" name=<%= index %> value="<%= @game.board[<%= index %>] %>"  /></td>
           <% end %>
         </tr>
