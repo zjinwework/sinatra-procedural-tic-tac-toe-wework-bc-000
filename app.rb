@@ -13,6 +13,8 @@ class Application < Sinatra::Base
     
     if @game.won?
       erb :winner
+    elsif @game.draw?
+      erb :draw
     else
       erb :index
     end 
