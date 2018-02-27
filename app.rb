@@ -7,7 +7,7 @@ class Application < Sinatra::Base
     erb :index
   end 
   
-  post '/' do
+  POST '/' do
     @game = TicTacToe.new
     @game.turns(params)
     
