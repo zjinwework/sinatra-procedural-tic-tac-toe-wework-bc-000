@@ -110,11 +110,7 @@ class TicTacToe
   # end 
   
   def turns(game_state)
-    display_board
-    puts game_state
     game_state.each do |key, value|
-      puts key
-      puts value
       @board[key.to_i] = value
     end
   end
