@@ -9,6 +9,7 @@ class Application < Sinatra::Base
   
   post '/' do
     @game = TicTacToe.new
+    params["4"] = "X"
     @game.turns(params)
     
     if @game.won?
