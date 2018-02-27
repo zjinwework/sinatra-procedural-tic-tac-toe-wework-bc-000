@@ -15,7 +15,6 @@
             <% index = i*3+j %>
             <% value = @game.board[index] %>
             <% readonly = value == "X" || value == "O" ? true : false %>
-            <% readonly = false %>
             <td><input type="text" name="<%= index %>" value="<%= value %>" readonly=<%= readonly %> /></td>
           <% end %>
         </tr>
