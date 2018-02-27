@@ -18,5 +18,7 @@ class Application < Sinatra::Base
     else
       erb :index
     end 
+    
   end
+  
 end
