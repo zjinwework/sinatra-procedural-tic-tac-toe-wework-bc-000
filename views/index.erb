@@ -13,7 +13,8 @@
         <tr>
           <% 3.times do |j| %>
             <% index = i*3+j %>
-            <td><input type="text" name="<%= index %>" value="<%= @game.board[index] %>" /></td>
+            <% readonly = @game.board[index] != " " ? "readonly" : "" %>
+            <td><input type="text" name="<%= index %>" value="<%= @game.board[index] %>" <%= readonly %>/></td>
           <% end %>
         </tr>
         <% end %>
