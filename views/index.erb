@@ -9,17 +9,21 @@
     <h1>Welcome to Tic Tac Toe!</h1>
     <form action="/" method="POST">
       <table>
-        <% 3.times do |i| %>
-        <tr>
-          <% 3.times do |j| %>
-            <% index = i*3+j %>
-            <% value = @game.board[index] %>
+        <!--<% 3.times do |i| %>-->
+        <!--<tr>-->
+        <!--  <% 3.times do |j| %>-->
+        <!--    <% index = i*3+j %>-->
+        <!--    <% value = @game.board[index] %>-->
             <!--<% readonly = value == " " ? false : true %>-->
-            <% readonly = false %>
-            <td><input type="text" name="<%= index %>" value="<%= value %>" readonly=<%= readonly %> /></td>
-          <% end %>
+        <!--    <% readonly = false %>-->
+        <!--    <td><input type="text" name="<%= index %>" value="<%= value %>" readonly=<%= readonly %> /></td>-->
+        <!--  <% end %>-->
+        <!--</tr>-->
+        <!--<% end %>-->
+        
+        <tr>
+          <td><input type</td>
         </tr>
-        <% end %>
       </table>
 
     <input type="submit" value="Submit Move" id="submit" />
