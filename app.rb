@@ -9,7 +9,7 @@ class Application < Sinatra::Base
   
   post '/' do
     @game = TicTacToe.new
-    @game.turns(@params)
+    @game.turns(params)
     
     if @game.won?
       erb :winner
