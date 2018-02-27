@@ -9,18 +9,18 @@
     <h1>Welcome to Tic Tac Toe!</h1>
     <form action="/" method="POST">
       <table>
-        <% 3.times do |i| %>
-        <tr>
-          <% 3.times do |j| %>
-            <% index = i*3+j %>
-            <td><input type="text" name="<%= index %>" value="<%= @game.board[index] %>" /></td>
-          <% end %>
-        </tr>
-        <% end %>
+        <!--<% 3.times do |i| %>-->
+        <!--<tr>-->
+        <!--  <% 3.times do |j| %>-->
+        <!--    <% index = i*3+j %>-->
+        <!--    <td><input type="text" name="<%= index %>" value="<%= @game.board[index] %>" /></td>-->
+        <!--  <% end %>-->
+        <!--</tr>-->
+        <!--<% end %>-->
          <!--readonly=<%= @game.board[index] != " " %> -->
-        <!--<% index = 4 %>-->
-        <!--<tr><td><input type="text" name="5" value="<%= @game.board[index] %>" /></td>-->
-        <!--<td><input type="text" name="<%= index %>" value="<%= @game.board[index] %>" /></td></tr>-->
+        <% index = 4 %>
+        <tr><td><input type="text" name="5" value="<%= @game.board[index] %>" /></td>
+        <td><input type="text" name="<%= index %>" value="<%= @game.board[index] %>" /></td></tr>
         <!--<tr>-->
         <!--  <td><input type="text" name="0" value="<%= @game.board[0] %>" readonly=false /></td>-->
         <!--  <td><input type="text" name="1" value="<%= @game.board[1] %>" readonly=false /></td>-->
