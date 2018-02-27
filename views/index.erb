@@ -15,7 +15,7 @@
           <td><input type="text" name="2" value="<%= @game.board[2] %>" /></td>
         </tr>
         <tr>
-          <td><input type="text" name="3" value="<%= @game.board[3] %>" /></td>
+          <td><input type="text" name="3" value="<%= @game.board[3] %>" readonly="<% if @game.board[4] == " " %>false<% else %>true<% end %>" /></td>
           <td><input type="text" name="4" value="<%= @game.board[4] %>" /></td>
           <td><input type="text" name="5" value="<%= @game.board[5] %>" /></td>
         </tr>
