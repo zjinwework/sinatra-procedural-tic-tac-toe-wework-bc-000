@@ -110,6 +110,6 @@ class TicTacToe
   # end 
   
   def turns(game_state)
-    @board = game_state.values
+    @board = game_state.index
   end
 end
