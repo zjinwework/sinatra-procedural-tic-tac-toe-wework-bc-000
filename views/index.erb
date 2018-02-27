@@ -9,6 +9,11 @@
     <h1>Welcome to Tic Tac Toe!</h1>
     <form action="/" method="POST">
       <table>
+        <% @game.board.each do |value|
+        <% squares = [1, 4, 9, 16] %>
+  <% squares.each do |square| %>
+    <li><%= square %></li>
+  <% end %>
         <tr>
           <td><input type="text" name="0" value="<%= @game.board[0] %>" readonly="<% if @game.board[0] == " " %>false<% else %>true<% end %>" /></td>
           <td><input type="text" name="1" value="<%= @game.board[1] %>" /></td>
