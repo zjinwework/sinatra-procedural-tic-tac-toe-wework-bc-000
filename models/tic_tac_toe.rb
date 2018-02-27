@@ -97,17 +97,17 @@ class TicTacToe
     end
   end
   
-  def play
-    while !over?
-      turn
-    end
+  # def play
+  #   while !over?
+  #     turn
+  #   end
     
-    if won?
-      puts "Congratulations #{winner}!"
-    elsif draw?
-      puts "Cat's Game!"
-    end 
-  end 
+  #   if won?
+  #     puts "Congratulations #{winner}!"
+  #   elsif draw?
+  #     puts "Cat's Game!"
+  #   end 
+  # end 
   
   def turns(game_state)
     @board = game_state.values
