@@ -9,28 +9,14 @@
     <h1>Welcome to Tic Tac Toe!</h1>
     <form action="/" method="POST">
       <table>
-        <% 9.times do |i| %>
-          
+        <% 3.times do |i| %>
+        <tr>
+          <% 3.times do |j| %>
+            <% index = i*3+ %>
+            <td><input type="text" name=<%= index %> value="<%= @game.board[<%= index %>] %>"  /></td>
+          <% end %>
+        </tr>
         <% end %>
-        <% squares = [1, 4, 9, 16] %>
-  <% squares.each do |square| %>
-    <li><%= square %></li>
-  <% end %>
-        <tr>
-          <td><input type="text" name="0" value="<%= @game.board[0] %>" readonly="<% if @game.board[0] == " " %>false<% else %>true<% end %>" /></td>
-          <td><input type="text" name="1" value="<%= @game.board[1] %>" /></td>
-          <td><input type="text" name="2" value="<%= @game.board[2] %>" /></td>
-        </tr>
-        <tr>
-          <td><input type="text" name="3" value="<%= @game.board[3] %>" readonly="<% if @game.board[4] == " " %>false<% else %>true<% end %>" /></td>
-          <td><input type="text" name="4" value="<%= @game.board[4] %>" /></td>
-          <td><input type="text" name="5" value="<%= @game.board[5] %>" /></td>
-        </tr>
-        <tr>
-          <td><input type="text" name="6" value="<%= @game.board[6] %>" /></td>
-          <td><input type="text" name="7" value="<%= @game.board[7] %>" /></td>
-          <td><input type="text" name="8" value="<%= @game.board[8] %>" /></td>
-        </tr>
       </table>
 
     <input type="submit" value="Submit Move" id="submit" />
