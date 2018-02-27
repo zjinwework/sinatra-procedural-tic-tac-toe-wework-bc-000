@@ -17,8 +17,9 @@
         <!--  <% end %>-->
         <!--</tr>-->
         <!--<% end %>-->
-        
-        <tr><td><input type="text" name="4" value = " " /></td></tr>
+        <% index = 5 %>
+        <tr><td><input type="text" name="4" value = " " /></td>
+        <td><input type="text" name="<%= index %>" value="<%= @game.board[index] %>" readonly=<%= @game.board[index] != " " %> /></td></tr>
         <!--<tr>-->
         <!--  <td><input type="text" name="0" value="<%= @game.board[0] %>" readonly=false /></td>-->
         <!--  <td><input type="text" name="1" value="<%= @game.board[1] %>" readonly=false /></td>-->
